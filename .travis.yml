@@ -2,3 +2,10 @@ language: rust
 rust:
   - stable
 cache: cargo
+env:
+  global:
+    secure: FZ0z+8fle6VAgL3Xm18b42dODzr1ZY7ejUZkYL8MFIkXqor2uhJyGT5iEpJfxNafUPO+1T6ytfR6nXaPiTOD1WilnF+G9JwZm3WRJ44XoKeaUdNpuVj6sR8pXGY5AuQ66exwlDmbnZkEOePKgS0vX+WxHeDZYy9Sp6e/rbBP38tt4f/WJv4PTldKeL55qiXbBAjYTCzRihX6uALz60eezrrZVXBVUK7a6ajDjc0LCOrPd/jtV2EvIH0uFii3rej50ahDDEUnJGn21L5GMMVhkjSiWkA0uX01jX1kvKQoGik6I4+zCEXPfPD3N4dpvKWeWlf0IP1ofb84xgYN9MFgYGzt9Y7XS8sQy0Q4+rgIVOHmn+Ib8Gxe0FmM94yTQ6n+SjUHHcFzTnDEPSeAFZdYViNAIzJjTq346zkPoMtIsr15xEi9D3CiBbjeyCPAGxUJDLs+BUKQjUxjwc0zkLmRfTX6hqAUqd0BsFIwQ4VSIEbs8MGnYeLRIhLwA6ID5cKQ1cL9peq1wVUcl8/cj6ZZG1XKWnL2H9F18f/vbPYLfjP1in8y3Cf2roeYeaafkSru6zN5lIJ2FRLAC+0hXYysip9ucJ7jZeClCZsphpwBcHzrIFrAAe0zi7l6is3BGTrZ7fqI/+ODJk9adrBkbV8V9AIifrT/qovXT3sSFBD+ZUI=
+
+after_success:
+  # Run build on Docker Hub
+  - '[ "$TRAVIS_EVENT_TYPE" = "cron" ] &&  [ "$TRAVIS_PULL_REQUEST" = "false" ] && [ "$TRAVIS_BRANCH" = "master" ] &&  curl --data build=true -X POST $DOCKER_PUSH_URL'
