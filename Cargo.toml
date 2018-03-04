@@ -1,0 +1,9 @@
+[package]
+name = "rust-webapp-example"
+version = "0.1.0"
+authors = ["Kristoffer Grönlund <krig@koru.se>"]
+
+[dependencies]
+hyper = "0.11"
+mime = "0.3"
+gotham = "0.2"
